@@ -25,21 +25,20 @@ public class StringCalculator {
                 int n = Integer.parseInt(num);
                 if (n < 0) {
                     negatives.add(n);
+                } else if (n <= 1000) {
+                    sum += n;
                 }
             }
         }
         if (!negatives.isEmpty()) {
             throw new IllegalArgumentException("Negatives not allowed: " + negatives);
         }
-        for (String number : numbersArray) {
-            sum += Integer.parseInt(number);
-        }
 
         return sum;
     }
 
     public static void main(String[] args) {
-        String numbers = "//;\n1,2,3;-4";
+        String numbers = "//;\n1,2,3;4;1001";
         System.out.println("Answer is :" + new StringCalculator().add(numbers));
     }
 }
