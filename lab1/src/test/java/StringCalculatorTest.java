@@ -58,7 +58,7 @@ public class StringCalculatorTest {
 
     @Test
     void multiple_delimiters_together_throws_exception() {
-        Assertions.assertThrows(IllegalArgumentException.class, () -> new StringCalculator().add("//;\n1;;2;3"));
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new StringCalculator().add("1\n,2,3"));
     }
 
     @Test
