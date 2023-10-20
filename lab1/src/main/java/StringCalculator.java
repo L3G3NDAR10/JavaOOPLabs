@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
@@ -17,6 +19,18 @@ public class StringCalculator {
                 throw new IllegalArgumentException("Multiple delimiters together are not allowed");
             }
         }
+        List<Integer> negatives = new ArrayList<>();
+        for (String num : numbersArray) {
+            if (!num.trim().isEmpty()) {
+                int n = Integer.parseInt(num);
+                if (n < 0) {
+                    negatives.add(n);
+                }
+            }
+        }
+        if (!negatives.isEmpty()) {
+            throw new IllegalArgumentException("Negatives not allowed: " + negatives);
+        }
         for (String number : numbersArray) {
             sum += Integer.parseInt(number);
         }
@@ -25,7 +39,7 @@ public class StringCalculator {
     }
 
     public static void main(String[] args) {
-        String numbers = "//;\n1,2,3;4";
+        String numbers = "//;\n1,2,3;-4";
         System.out.println("Answer is :" + new StringCalculator().add(numbers));
     }
 }
