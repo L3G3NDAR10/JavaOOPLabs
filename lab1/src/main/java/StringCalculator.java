@@ -9,7 +9,20 @@ public class StringCalculator {
             int delimiterIndex = numbers.indexOf("\n");
             String delimiter = numbers.substring(2, delimiterIndex);
             numbers = numbers.substring(delimiterIndex + 1);
-            numbers = numbers.replaceAll(Pattern.quote(delimiter), ",");
+
+            if (delimiter.startsWith("[")) {
+                delimiter = delimiter.substring(1, delimiter.length() - 1);
+                String[] customDelimiter = delimiter.split("]\\[");
+
+                for (int i = 0; i < customDelimiter.length; i++) {
+                    customDelimiter[i] = Pattern.quote(customDelimiter[i]);
+                }
+
+                String allDelimiters = String.join("|", customDelimiter);
+                numbers = numbers.replaceAll(allDelimiters, ",");
+            } else {
+                numbers = numbers.replaceAll(Pattern.quote(delimiter), ",");
+            }
         }
 
         int sum = 0;
@@ -38,7 +51,7 @@ public class StringCalculator {
     }
 
     public static void main(String[] args) {
-        String numbers = "//;\n1,2,3;4;1001";
+        String numbers = "//[^^^][***]\n1^^^2***3,4***1001";
         System.out.println("Answer is :" + new StringCalculator().add(numbers));
     }
 }
