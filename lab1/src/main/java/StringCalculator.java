@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -13,6 +15,8 @@ public class StringCalculator {
             if (delimiter.startsWith("[")) {
                 delimiter = delimiter.substring(1, delimiter.length() - 1);
                 String[] customDelimiter = delimiter.split("]\\[");
+
+                Arrays.sort(customDelimiter, Collections.reverseOrder());
 
                 for (int i = 0; i < customDelimiter.length; i++) {
                     customDelimiter[i] = Pattern.quote(customDelimiter[i]);
@@ -51,7 +55,7 @@ public class StringCalculator {
     }
 
     public static void main(String[] args) {
-        String numbers = "//[^^^][***]\n1^^^2***3,4***1001";
+        String numbers = "//[**][***][*]\n1,1**1*1***1\n1";
         System.out.println("Answer is :" + new StringCalculator().add(numbers));
     }
 }
