@@ -55,7 +55,7 @@ public class StringCalculator {
     }
 
     public static void main(String[] args) {
-        String numbers = "//[**][***][*]\n1,1**1*1***1\n1";
+        String numbers = "//[**][***][*]\n1,1**1*1***1\n-1001";
         System.out.println("Answer is :" + new StringCalculator().add(numbers));
     }
 }
